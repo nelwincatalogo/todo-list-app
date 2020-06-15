@@ -48,7 +48,7 @@ class Add extends Component {
                   }
 
                   this.setState({ description: "" });
-                  return this.props.onAdd(this.state.description);
+                  return this.props.onAdd(this.state.description.trim());
                 }}
                 className="btn btn-primary"
                 type="button"
