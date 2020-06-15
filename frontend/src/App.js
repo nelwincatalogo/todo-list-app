@@ -20,11 +20,11 @@ class App extends Component {
     API.get("/retrieve")
       .then((res) => {
         const todos = res.data;
-        console.log(todos);
+        console.log("Fetch Todos", todos);
         this.setState({ todos });
       })
       .catch((err) => {
-        console.error(err.message);
+        console.error("Fetch Todos", err.message);
       });
   };
 
