@@ -42,7 +42,7 @@ class Add extends Component {
             <div className="input-group-append">
               <button
                 onClick={() => {
-                  if (this.state.description.length === 0) {
+                  if (this.state.description.trim().length === 0) {
                     this.setState({ isError: true });
                     return;
                   }
