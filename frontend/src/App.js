@@ -20,11 +20,11 @@ class App extends Component {
     API.get("/retrieve")
       .then((res) => {
         const todos = res.data;
-        console.log("Fetch Todos", todos);
+        console.log("Fetch Todos :", todos);
         this.setState({ todos });
       })
       .catch((err) => {
-        console.error("Fetch Todos", err.message);
+        console.error("Fetch Todos :", err.message);
       });
   };
 
@@ -44,6 +44,23 @@ class App extends Component {
       });
   };
 
+  handleCompleted = (completed, todo) => {
+    const data = {
+      _id: todo._id,
+      set: {
+        completed,
+      },
+    };
+
+    API.post("/update", data)
+      .then((res) => {
+        console.log("Handle Completed :", res.data);
+      })
+      .catch((err) => {
+        console.error("Handle Completed :", err.message);
+      });
+  };
+
   render() {
     return (
       <div className="container">
@@ -57,7 +74,11 @@ class App extends Component {
 
             {this.state.todos.length > 0 ? (
               this.state.todos.map((todo) => (
-                <Tasks key={todo._id} todo={todo} />
+                <Tasks
+                  key={todo._id}
+                  todo={todo}
+                  onChecked={this.handleCompleted}
+                />
               ))
             ) : (
               <p className="">No Todos...</p>
