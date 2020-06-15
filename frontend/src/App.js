@@ -61,6 +61,17 @@ class App extends Component {
       });
   };
 
+  handleClear = () => {
+    API.post("/delete/all")
+      .then((res) => {
+        console.log("Handle Clear", res.data);
+        this.fetchTodos();
+      })
+      .catch((err) => {
+        console.error("Handle Clear :", err.message);
+      });
+  };
+
   render() {
     return (
       <div className="container">
@@ -83,7 +94,7 @@ class App extends Component {
             ) : (
               <p className="">No Todos...</p>
             )}
-            <Clear />
+            <Clear onClear={this.handleClear} />
           </div>
         </div>
       </div>
